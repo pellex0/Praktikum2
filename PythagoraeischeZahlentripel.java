@@ -4,9 +4,10 @@ public class PythagoraeischeZahlentripel{
     private int pTripelMenge;
 
     public PythagoraeischeZahlentripel(int minimum, int maximum){
-        int[] intArray = UtilsForArrays.createIntArray(minimum, maximum);
-        int[] pruefZahlen = intArray;
-        int[] pruefZahlenQuad = UtilsForArrays.quadriere(intArray); 
+        this.pruefZahlen = UtilsForArrays.createIntArray(minimum, maximum);
+        this.pruefZahlenQuad = UtilsForArrays.quadriere(this.pruefZahlen);
+        UtilsForArrays.arrayInhaltAusgeben(this.pruefZahlenQuad);
+        berechne();
     }
 
     public boolean istQuadratzahl(int zahl){
@@ -15,24 +16,22 @@ public class PythagoraeischeZahlentripel{
 
     public void berechne(){
         for (int j = 0; j < pruefZahlenQuad.length - 2; j++) {
-            for (int i = j + 2; i < pruefZahlenQuad.length; i++) {
+            for (int i = j; i < pruefZahlenQuad.length; i++) {
                 int zahl = Math.abs(pruefZahlenQuad[j] - pruefZahlenQuad[i]);
-                if (istQuadratzahl(zahl) == true) {
+                if (pruefZahlenQuad[j] < zahl && istQuadratzahl(zahl) == true) {
                     this.pTripelMenge = this.pTripelMenge + 1;
                     System.out.println(Math.sqrt(pruefZahlenQuad[j]) 
                                         + "^2 + "  
-                                        + zahl 
+                                        + Math.sqrt(zahl)
                                         + "^2 = " 
                                         + Math.sqrt(pruefZahlenQuad[i]) 
-                                        + "^2");
+                                        + "^2");                   
                 }
             }
         }
     }
 
     public void gibAnzahlAus(){
-        System.out.print("Anzahl Pythagoräische Zahlentripel:" + this.pTripelMenge);
+        System.out.println("Anzahl Pythagoraeische Zahlentripel:" + this.pTripelMenge);
     }
-
-
 }
