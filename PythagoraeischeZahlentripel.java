@@ -14,21 +14,24 @@ public class PythagoraeischeZahlentripel{
     }
 
     public void berechne(){
-        pTripelMenge = 0;
-        for(int i = 1; i < pruefZahlenQuad.length; ++i) {
-            int zahl = Math.abs(pruefZahlenQuad[i] - pruefZahlenQuad[i-1]);
-            if (istQuadratzahl(zahl) = true) {
-                int pTripelMenge = pTripelMenge + 1 ;
-                System.out.println(Math.sqrt(pruefZahlenQuad[i-1]) + zahl + "^2" 
-                                            + "^2 = " + Math.sqrt(pruefZahlenQuad[i]) + "^2");
-            } else {
-
+        for (int j = 0; j < pruefZahlenQuad.length - 2; j++) {
+            for (int i = j + 2; i < pruefZahlenQuad.length; i++) {
+                int zahl = Math.abs(pruefZahlenQuad[j] - pruefZahlenQuad[i]);
+                if (istQuadratzahl(zahl) == true) {
+                    this.pTripelMenge = this.pTripelMenge + 1;
+                    System.out.println(Math.sqrt(pruefZahlenQuad[j]) 
+                                        + "^2 + "  
+                                        + zahl 
+                                        + "^2 = " 
+                                        + Math.sqrt(pruefZahlenQuad[i]) 
+                                        + "^2");
+                }
             }
         }
     }
 
     public void gibAnzahlAus(){
-        System.out.print("Anzahl Pythagoräische Zahlentripel:" + pTripelMenge);
+        System.out.print("Anzahl Pythagoräische Zahlentripel:" + this.pTripelMenge);
     }
 
 
